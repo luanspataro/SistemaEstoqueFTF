@@ -1,0 +1,46 @@
+﻿ @model List<Item>
+@{
+}
+
+<h2 class="text-center mb-3 mt-4">Lista de Sets</h2>
+
+<div class="row mb-5">
+    <div class="col position-relative">
+        <a class="position-absolute top-50 start-50 translate-middle btn btn-primary mt-3" asp-controller="Itens" asp-action="Create">Adicionar Item</a>
+    </div>
+</div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th>Imagem</th>
+            <th>Raridade</th>
+            <th>Quantidade</th>
+            <th>Ação</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Nome</td>
+                <td>R$ @(item.Preco)</td>
+                <td><img src="/itens/@item.ImageFileName" width="100" /></td>
+                <td>@item.Raridade</td>
+                <td>@item.Quantidade</td>
+                <td style="white-space:nowrap">
+                    <a class="btn btn-primary btn-sm" asp-controller="Itens" asp-action="Edit"
+                        asp-route-id="@item.Id">Editar</a>
+                    <a class="btn btn-danger btn-sm" asp-controller="Itens" asp-action="Delete"
+                        asp-route-id="@item.Id" onclick="return confirm('Tem certeza que deseja deletar?')">Deletar</a>
+                </td>
+            </tr> 
+        }
+    </tbody>
+</table>
