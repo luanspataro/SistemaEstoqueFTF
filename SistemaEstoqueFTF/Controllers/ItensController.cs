@@ -8,21 +8,35 @@ namespace SistemaEstoqueFTF.Controllers
     {
         private readonly ApplicationDbContext context;
         private readonly IWebHostEnvironment environment;
+        private bool mostrarEditar = false;
 
         public ItensController(ApplicationDbContext context, IWebHostEnvironment environment)
         {
             this.context = context;
             this.environment = environment;
         }
+
         public IActionResult Index()
         {
+            ViewData["MostrarEditar"] = mostrarEditar;
             var itens = context.Itens.OrderByDescending(p => p.Preco).ToList();
             return View(itens);
         }
 
-        public IActionResult Create() 
+        [HttpPost]
+        public IActionResult AtivarEditar()
         {
-            return View(); 
+            mostrarEditar = !mostrarEditar;
+
+            ViewData["MostrarEditar"] = mostrarEditar;
+
+            var itens = context.Itens.OrderByDescending(p => p.Preco).ToList();
+            return View("Index", itens);
+        }
+
+        public IActionResult Create()
+        {
+            return View();
         }
 
         [HttpPost]
@@ -134,7 +148,7 @@ namespace SistemaEstoqueFTF.Controllers
         {
             var item = context.Itens.Find(id);
 
-            if(item == null)
+            if (item == null)
                 return RedirectToAction("Index", "Itens");
 
             string imageFullPath = environment.WebRootPath + "/itens/" + item.ImageFileName;

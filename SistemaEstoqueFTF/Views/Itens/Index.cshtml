@@ -1,46 +1,36 @@
-﻿ @model List<Item>
+﻿@model List<Item>
 @{
+    bool mostrarEditar = ViewData["MostrarEditar"] != null && (bool)ViewData["MostrarEditar"];
 }
 
-<h2 class="text-center mb-3 mt-4">Lista de Sets</h2>
+<form asp-action="AtivarEditar" method="post">
+    <button type="submit">
+        @(mostrarEditar ? "Desativar Edição" : "Ativar Edição")
+    </button>
+</form>
 
-<div class="row mb-5">
-    <div class="col position-relative">
-        <a class="position-absolute top-50 start-50 translate-middle btn btn-primary mt-3" asp-controller="Itens" asp-action="Create">Adicionar Item</a>
+<div class="container">
+
+    @foreach (var item in Model){
+    <div class="card">
+        <div class="img">
+                <img src="/itens/@item.ImageFileName" width="60">
+        </div>
+        <h1>@item.Nome</h1>
+        <div class="content">
+            <p>
+                R$ @item.Preco 
+            </p>
+            <div class="display">
+                <a class="minus" href="#">-</a>
+                <p>@item.Quantidade</p>
+                <a href="#">+</a>
+            </div>
+                @if (mostrarEditar)
+                {
+                    <a href="/Itens/Edit/@item.Id" class="btn btn-warning">Editar</a>
+                }
+        </div>
     </div>
+    }
 </div>
-
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Preço</th>
-            <th>Imagem</th>
-            <th>Raridade</th>
-            <th>Quantidade</th>
-            <th>Ação</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        @foreach(var item in Model)
-        {
-            <tr>
-                <td>@item.Id</td>
-                <td>@item.Nome</td>
-                <td>R$ @(item.Preco)</td>
-                <td><img src="/itens/@item.ImageFileName" width="100" /></td>
-                <td>@item.Raridade</td>
-                <td>@item.Quantidade</td>
-                <td style="white-space:nowrap">
-                    <a class="btn btn-primary btn-sm" asp-controller="Itens" asp-action="Edit"
-                        asp-route-id="@item.Id">Editar</a>
-                    <a class="btn btn-danger btn-sm" asp-controller="Itens" asp-action="Delete"
-                        asp-route-id="@item.Id" onclick="return confirm('Tem certeza que deseja deletar?')">Deletar</a>
-                </td>
-            </tr> 
-        }
-    </tbody>
-</table>
