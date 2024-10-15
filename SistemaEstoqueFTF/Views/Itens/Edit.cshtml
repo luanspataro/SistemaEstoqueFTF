@@ -4,14 +4,14 @@
 
 
 <div class="row">
-    <div class="col-md-8 mx-auto rounded border p-3">
+    <div class="col-md-8 mx-auto rounded-4 border-2 p-3 box">
         <h2 class="text-center mb-5">Editar item</h2>
 
         <form method="post" enctype="multipart/form-data">
             <div class="row mb-3">
                 <label class="col-sm-4 col-form-label">Id</label>
                 <div class="col-sm-8">
-                    <input class="form-control-plaintext" style="color:white" readonly value="@ViewData["ItemId"]">
+                    <input class="form-control-plaintext" readonly value="@ViewData["ItemId"]">
                 </div>
             </div>
 
@@ -31,18 +31,19 @@
                 </div>
             </div>
 
+
             <div class="row mb-3">
                 <label class="col-sm-4 col-form-label">Raridade</label>
                 <div class="col-sm-8">
                     <select class="form-select" asp-for="Raridade">
-                        <option value='Lendário'>Lendário</option>
-                        <option value='Épico'>Épico</option>
-                        <option value='Raro'>Raro</option>
-                        <option value='Comum'>Comum</option>
+                        <option value='Lendário' class="lendario">Lendário</option>
+                        <option value='Épico' class="epico">Épico</option>
+                        <option value='Raro' class="raro">Raro</option>
+                        <option value='Comum' class="comum">Comum</option>
                     </select>
                 </div>
             </div>
-
+                
             <div class="row mb-3">
                 <label class="col-sm-4 col-form-label">Quantidade</label>
                 <div class="col-sm-8">
@@ -68,7 +69,7 @@
             <div class="row mb-3">
                 <label class="col-sm-4 col-form-label">Criado em</label>
                 <div class="col-sm-8">
-                    <input class="form-control-plaintext" style="color:white" readonly value="@ViewData["CreatedAt"]">
+                    <input class="form-control-plaintext" readonly value="@ViewData["CreatedAt"]">
                 </div>
             </div>
 

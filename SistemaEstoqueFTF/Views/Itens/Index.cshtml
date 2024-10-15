@@ -1,36 +1,56 @@
 ﻿@model List<Item>
 @{
-    bool mostrarEditar = ViewData["MostrarEditar"] != null && (bool)ViewData["MostrarEditar"];
 }
-
-<form asp-action="AtivarEditar" method="post">
-    <button type="submit">
-        @(mostrarEditar ? "Desativar Edição" : "Ativar Edição")
-    </button>
-</form>
 
 <div class="container">
 
     @foreach (var item in Model){
-    <div class="card">
-        <div class="img">
-                <img src="/itens/@item.ImageFileName" width="60">
+
+        var classeCor = "";
+        if (item.Raridade == "Lendário")
+        {
+            classeCor = "lendario";
+        }
+        else if (item.Raridade == "Épico")
+        {
+            classeCor = "epico";
+        }
+        else if (item.Raridade == "Raro")
+        {
+            classeCor = "raro";
+        }
+        else if (item.Raridade == "Comum")
+        {
+            classeCor = "comum";
+        }
+
+        <div class="card">
+
+            <div class="fundoEtiqueta"></div>
+            <div class="etiqueta @classeCor"></div>
+
+        <a href="/Itens/Edit/@item.Id" class="botaoEditar">
+            <img src="/img/edit.png" alt="Editar" width="20">
+        </a>
+
+        <div class="img mb-1">
+            <img src="/itens/@item.ImageFileName" width="60">
         </div>
-        <h1>@item.Nome</h1>
+
+        <h1 class="mb-0">@item.Nome</h1>
+
         <div class="content">
-            <p>
-                R$ @item.Preco 
+            <p class="mt-0 mb-1">
+                R$ @item.Preco
             </p>
             <div class="display">
                 <a class="minus" href="#">-</a>
                 <p>@item.Quantidade</p>
                 <a href="#">+</a>
             </div>
-                @if (mostrarEditar)
-                {
-                    <a href="/Itens/Edit/@item.Id" class="btn btn-warning">Editar</a>
-                }
         </div>
+
+
     </div>
     }
 </div>

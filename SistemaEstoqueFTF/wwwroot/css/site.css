@@ -53,11 +53,12 @@ body {
         width: 180px;
         background-color: #fff;
         margin: 5px;
-        border: 2px solid black;
+        /*border: 2px solid black;*/
         border-radius: 15px;
         overflow: hidden;
         transition: 0.5s;
         text-align: center;
+        /*border: none;*/
     }
 
         .container .card img {
@@ -85,7 +86,6 @@ body {
                 width: 23%;
                 position: relative;
                 display: inline-block;
-                padding: 1px 1px;
                 background-color: #000;
                 color: #fff;
                 border-radius: 20px;
@@ -94,19 +94,21 @@ body {
                 transition: 0.5s;
                 outline: none;
                 margin-bottom: 10px;
+                margin: 0 3px;
             }
 
         .container .card .content a .minus {
-            padding: 1px 1px 4px 1px;
+            /*padding: 1px 1px 4px 1px;*/
+            padding: 1px;
         }
 
         .container .card:hover {
-            background-color: #dc2e69;
+            background-color: gold;
             /*background-color: black;*/
             color: white;
-            margin-top: -5px;
-            box-shadow: 2px 20px 25px #dc2e685d;
-            border-color: #dc2e69;
+            margin-top: -2px;
+            box-shadow: 2px 20px 25px #FFEB81;
+            border-color: gold;
         }
 
             .container .card:hover img {
@@ -121,3 +123,55 @@ body {
                 color: black;
                 background-color: white;
             }
+
+.botaoEditar {
+    width: 25%;
+}
+
+.box {
+    background-color: white;
+    border-radius: 15px;
+}
+
+.lendario {
+    border-top: 20px solid yellow;
+    border-color: 5px solid black;
+}
+
+.epico {
+    border-top: 20px solid #ff00e4;
+}
+
+.raro {
+    border-top: 20px solid gold;
+}
+
+.comum {
+    border-top: 20px solid gold;
+}
+
+.etiqueta {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    transform: rotate(225deg);
+    position: absolute;
+    right: 1px;
+}
+
+.minus {
+    margin: 0;
+}
+
+/* opcional */
+/*.fundoEtiqueta {
+    width: 0;
+    height: 0;
+    border-left: 22px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid black;
+    transform: rotate(225deg);
+    position: absolute;
+    right: 1px;
+}*/
