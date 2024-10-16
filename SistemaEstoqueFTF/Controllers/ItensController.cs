@@ -18,20 +18,8 @@ namespace SistemaEstoqueFTF.Controllers
 
         public IActionResult Index()
         {
-            ViewData["MostrarEditar"] = mostrarEditar;
             var itens = context.Itens.OrderByDescending(p => p.Preco).ToList();
             return View(itens);
-        }
-
-        [HttpPost]
-        public IActionResult AtivarEditar()
-        {
-            mostrarEditar = !mostrarEditar;
-
-            ViewData["MostrarEditar"] = mostrarEditar;
-
-            var itens = context.Itens.OrderByDescending(p => p.Preco).ToList();
-            return View("Index", itens);
         }
 
         public IActionResult Create()
@@ -142,6 +130,18 @@ namespace SistemaEstoqueFTF.Controllers
             context.SaveChanges();
 
             return RedirectToAction("Index", "Itens");
+        }
+
+        [HttpPost]
+        public JsonResult More(int id)
+        {
+            var item = context.Itens.Find(id);
+            if (item != null)
+            {
+                item.Quantidade += 1;
+                context.SaveChanges();
+            }
+            return Json(new { quantidade = item?.Quantidade });
         }
 
         public IActionResult Delete(int id)

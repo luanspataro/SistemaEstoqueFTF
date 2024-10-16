@@ -7,25 +7,12 @@
     @foreach (var item in Model){
 
         var classeCor = "";
-        if (item.Raridade == "Lendário")
-        {
-            classeCor = "lendario";
-        }
-        else if (item.Raridade == "Épico")
-        {
-            classeCor = "epico";
-        }
-        else if (item.Raridade == "Raro")
-        {
-            classeCor = "raro";
-        }
-        else if (item.Raridade == "Comum")
-        {
-            classeCor = "comum";
-        }
+        if (item.Raridade == "Lendário") classeCor = "lendario";
+        else if (item.Raridade == "Épico") classeCor = "epico";
+        else if (item.Raridade == "Raro") classeCor = "raro";
+        else if (item.Raridade == "Comum") classeCor = "comum";
 
         <div class="card">
-
             <div class="fundoEtiqueta"></div>
             <div class="etiqueta @classeCor"></div>
 
@@ -39,18 +26,35 @@
 
         <h1 class="mb-0">@item.Nome</h1>
 
-        <div class="content">
-            <p class="mt-0 mb-1">
-                R$ @item.Preco
-            </p>
-            <div class="display">
-                <a class="minus" href="#">-</a>
-                <p>@item.Quantidade</p>
-                <a href="#">+</a>
+            <div class="content">
+                <p class="mt-0 mb-1">
+                    R$ @item.Preco
+                </p>
+                <div class="display">
+                    <a class="minus" href="#">-</a>
+                    <p id="quantidade-@item.Id">@item.Quantidade</p>
+                    <a href="javascript:void(0)" onclick="adicionarUnidade(@item.Id)">+</a>
+                </div>
             </div>
         </div>
-
-
-    </div>
     }
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    function adicionarUnidade(itemId) {
+        $.ajax({
+            url: '@Url.Action("More", "Itens")',
+            type: 'POST',
+            data: { id: itemId },
+            success: function (data) {
+                if (data.quantidade !== undefined) {
+                    $('#quantidade-' + itemId).text(data.quantidade);
+                }
+            },
+            error: function () {
+                alert('Erro ao adicionar unidade.');
+            }
+        });
+    }
+</script>
