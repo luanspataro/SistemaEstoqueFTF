@@ -17,6 +17,7 @@ namespace SistemaEstoqueFTF.Models
         [MaxLength(20)]
         public string Raridade { get; set; } = "";
 
+        // [Range(0, 1000)]
         [MaxLength(4)]
         public int Quantidade { get; set; }
 

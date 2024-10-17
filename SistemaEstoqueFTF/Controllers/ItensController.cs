@@ -144,6 +144,18 @@ namespace SistemaEstoqueFTF.Controllers
             return Json(new { quantidade = item?.Quantidade });
         }
 
+        [HttpPost]
+        public JsonResult Less(int id)
+        {
+            var item = context.Itens.Find(id);
+            if (item != null)
+            {
+                item.Quantidade -= 1;
+                context.SaveChanges();
+            }
+            return Json(new { quantidade = item?.Quantidade });
+        }
+
         public IActionResult Delete(int id)
         {
             var item = context.Itens.Find(id);

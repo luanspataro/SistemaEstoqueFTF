@@ -31,30 +31,11 @@
                     R$ @item.Preco
                 </p>
                 <div class="display">
-                    <a class="minus" href="#">-</a>
+                    <a href="javascript:void(0)" onclick="diminuirUnidade(@item.Id)">-</a>
                     <p id="quantidade-@item.Id">@item.Quantidade</p>
-                    <a href="javascript:void(0)" onclick="adicionarUnidade(@item.Id)">+</a>
+                    <a href="javascript:void(0)" onclick="aumentarUnidade(@item.Id)">+</a>
                 </div>
             </div>
         </div>
     }
 </div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-    function adicionarUnidade(itemId) {
-        $.ajax({
-            url: '@Url.Action("More", "Itens")',
-            type: 'POST',
-            data: { id: itemId },
-            success: function (data) {
-                if (data.quantidade !== undefined) {
-                    $('#quantidade-' + itemId).text(data.quantidade);
-                }
-            },
-            error: function () {
-                alert('Erro ao adicionar unidade.');
-            }
-        });
-    }
-</script>

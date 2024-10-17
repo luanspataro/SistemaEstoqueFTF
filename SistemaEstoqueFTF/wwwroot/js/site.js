@@ -1,4 +1,19 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿function aumentarUnidade(itemId) {
+    $.post(addUnidade, { id: itemId }, function (data) {
+        if (data.quantidade) {
+            $('#quantidade-' + itemId).text(data.quantidade);
+        }
+    }).fail(function () {
+        alert('Erro ao adicionar unidade.');
+    });
+}
 
-// Write your JavaScript code.
+function diminuirUnidade(itemId) {
+    $.post(subUnidade, { id: itemId }, function (data) {
+        if (data.quantidade) {
+            $('#quantidade-' + itemId).text(data.quantidade);
+        }
+    }).fail(function () {
+        alert('Erro ao adicionar unidade.');
+    });
+}
