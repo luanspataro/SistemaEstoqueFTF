@@ -128,6 +128,15 @@ body {
     width: 25%;
 }
 
+.botaoDeletar {
+    width: 35%;
+}
+
+header {
+    width: 150px;
+    margin: auto;
+}
+
 .box {
     background-color: white;
     border-radius: 15px;
@@ -143,11 +152,11 @@ body {
 }
 
 .raro {
-    border-top: 20px solid gold;
+    border-top: 20px solid blue;
 }
 
 .comum {
-    border-top: 20px solid gold;
+    border-top: 20px solid green;
 }
 
 .etiqueta {
@@ -171,3 +180,6 @@ body {
     position: absolute;
     right: 1px;
 }*/
+
+
+/* Edit */

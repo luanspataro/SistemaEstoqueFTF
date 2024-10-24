@@ -2,6 +2,20 @@
 @{
 }
 
+<header>
+    <a class="btn btn-outline-primary d-flex justify-content-center" asp-controller="Itens" asp-action="Create" role="button">
+        Criar novo item
+    </a>
+
+    <a class="btn btn-outline-primary d-flex justify-content-center" asp-controller="Itens" asp-action="AddXAll" role="button">
+        Adicionar 1X All lendários
+    </a>
+
+    <a class="btn btn-outline-primary d-flex justify-content-center" asp-controller="Itens" asp-action="SubXAll" role="button">
+        Diminuir 1X All lendários
+    </a>
+</header>
+
 <div class="container">
 
     @foreach (var item in Model){
@@ -13,13 +27,17 @@
         else if (item.Raridade == "Comum") classeCor = "comum";
 
         <div class="card">
-            <div class="fundoEtiqueta"></div>
             <div class="etiqueta @classeCor"></div>
 
         <a href="/Itens/Edit/@item.Id" class="botaoEditar">
             <img src="/img/edit.png" alt="Editar" width="20">
         </a>
 
+          <!-- <a class="botaoDeletar" asp-controller="Itens" asp-action="Delete"
+                asp-route-id="@item.Id" onclick="return confirm('Are you sure?')">
+                <img src="/img/trash.png" width="20">
+              </a> -->
+        
         <div class="img mb-1">
             <img src="/itens/@item.ImageFileName" width="60">
         </div>

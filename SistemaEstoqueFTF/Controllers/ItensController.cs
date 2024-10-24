@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SistemaEstoqueFTF.Models;
 using SistemaEstoqueFTF.Services;
+using System.Linq;
 
 namespace SistemaEstoqueFTF.Controllers
 {
@@ -8,7 +9,6 @@ namespace SistemaEstoqueFTF.Controllers
     {
         private readonly ApplicationDbContext context;
         private readonly IWebHostEnvironment environment;
-        private bool mostrarEditar = false;
 
         public ItensController(ApplicationDbContext context, IWebHostEnvironment environment)
         {
@@ -132,6 +132,22 @@ namespace SistemaEstoqueFTF.Controllers
             return RedirectToAction("Index", "Itens");
         }
 
+        public IActionResult Delete(int id)
+        {
+            var item = context.Itens.Find(id);
+
+            if (item == null)
+                return RedirectToAction("Index", "Itens");
+
+            string imageFullPath = environment.WebRootPath + "/itens/" + item.ImageFileName;
+            System.IO.File.Delete(imageFullPath);
+
+            context.Itens.Remove(item);
+            context.SaveChanges(true);
+
+            return RedirectToAction("Index", "Itens");
+        }
+
         [HttpPost]
         public JsonResult More(int id)
         {
@@ -148,7 +164,7 @@ namespace SistemaEstoqueFTF.Controllers
         public JsonResult Less(int id)
         {
             var item = context.Itens.Find(id);
-            if (item != null)
+            if (item != null && item.Quantidade > 0)
             {
                 item.Quantidade -= 1;
                 context.SaveChanges();
@@ -156,20 +172,50 @@ namespace SistemaEstoqueFTF.Controllers
             return Json(new { quantidade = item?.Quantidade });
         }
 
-        public IActionResult Delete(int id)
+        [HttpGet]
+        [HttpPost]
+        public IActionResult AddXAll()
         {
-            var item = context.Itens.Find(id);
+            var items = context.Itens.Where(i => i.Raridade == "Lendário").ToList();
 
-            if (item == null)
-                return RedirectToAction("Index", "Itens");
-
-            string imageFullPath = environment.WebRootPath + "/itens/" + item.ImageFileName;
-            System.IO.File.Delete(imageFullPath);
-
-            context.Itens.Remove(item);
-            context.SaveChanges(true);
-
+            if (items.Any())
+            {
+                foreach (var item in items)
+                {
+                    item.Quantidade += 1;
+                }
+                context.SaveChanges();
+            }
             return RedirectToAction("Index", "Itens");
         }
+
+
+        [HttpGet]
+        [HttpPost]
+        public IActionResult SubXAll()
+        {
+            var items = context.Itens.Where(i => i.Raridade == "Lendário").ToList();
+
+            if (items.Any())
+            {
+                foreach (var item in items)
+                {
+                    if (item.Quantidade < 1)
+                    {
+                        ModelState.AddModelError("", "Não foi possível reduzir a quantidade de um item que tem menos de 1 em estoque.");
+                        break;
+                    }
+                    else
+                    {
+                        item.Quantidade -= 1;
+                    }
+                        
+                }
+                ModelState.AddModelError("", "Não foi possível reduzir a quantidade de um item que tem menos de 1 em estoque.");
+            }
+            context.SaveChanges();
+            return RedirectToAction("Index", "Itens");
+        }
+
     }
 }

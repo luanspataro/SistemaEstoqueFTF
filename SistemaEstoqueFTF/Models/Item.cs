@@ -12,13 +12,12 @@ namespace SistemaEstoqueFTF.Models
         public string Nome { get; set; } = "";
 
         [Precision(16, 2)]
-        public decimal Preco { get; set; }
+        public decimal? Preco { get; set; }
 
         [MaxLength(20)]
         public string Raridade { get; set; } = "";
 
-        // [Range(0, 1000)]
-        [MaxLength(4)]
+        [Range(0, 1000, ErrorMessage = "A quantidade deve ser entre 0 e 1000.")]
         public int Quantidade { get; set; }
 
         [MaxLength(100)]

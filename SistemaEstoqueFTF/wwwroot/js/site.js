@@ -1,6 +1,6 @@
 ﻿function aumentarUnidade(itemId) {
     $.post(addUnidade, { id: itemId }, function (data) {
-        if (data.quantidade) {
+        if (data.quantidade !== undefined) {
             $('#quantidade-' + itemId).text(data.quantidade);
         }
     }).fail(function () {
@@ -10,7 +10,7 @@
 
 function diminuirUnidade(itemId) {
     $.post(subUnidade, { id: itemId }, function (data) {
-        if (data.quantidade) {
+        if (data.quantidade !== undefined) {
             $('#quantidade-' + itemId).text(data.quantidade);
         }
     }).fail(function () {

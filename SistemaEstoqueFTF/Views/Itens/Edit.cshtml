@@ -2,7 +2,14 @@
 @{
 }
 
-
+<!doctype html>
+<html lang="pt">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/css/edit.css" asp-append-version="true" />
+</head>
+<body>
 <div class="row">
     <div class="col-md-8 mx-auto rounded-4 border-2 p-3 box">
         <h2 class="text-center mb-5">Editar item</h2>
@@ -77,6 +84,7 @@
                 <div class="offset-sm-4 col-sm-4 d-grid">
                     <button type="submit" class="btn btn-primary">Confirmar</button>
                 </div>
+
                 <div class="col-sm-4 d-grid">
                     <a class="btn btn-outline-primary" asp-controller="Itens" asp-action="Index" role="button">
                         Cancelar
@@ -87,3 +95,5 @@
         </form>
     </div>
 </div>
+</body>
+</html>
