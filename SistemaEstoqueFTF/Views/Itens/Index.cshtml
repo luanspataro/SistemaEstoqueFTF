@@ -1,20 +1,24 @@
 ﻿@model List<Item>
-@{
-}
+@{}
 
 <header>
-    <a class="btn btn-outline-primary d-flex justify-content-center" asp-controller="Itens" asp-action="Create" role="button">
+    <a class="btn btn-primary d-flex justify-content-center" asp-controller="Itens" asp-action="Create" role="button">
         Criar novo item
     </a>
 
-    <a class="btn btn-outline-primary d-flex justify-content-center" asp-controller="Itens" asp-action="AddXAll" role="button">
-        Adicionar 1X All lendários
-    </a>
+    <div class="d-flex flex-row justify-content-center mt-3">
+        <a class="btn btn-outline-primary d-flex justify-content-center" asp-controller="Itens" asp-action="AddXAll" role="button">
+            Adicionar 1X All lendários
+        </a>
+        <!--<button class="button-def button-6"><span>Hover me</span></button>--->
+        <a class="btn btn-outline-primary d-flex justify-content-center" asp-controller="Itens" asp-action="SubXAll" role="button">
+            Diminuir 1X All lendários
+        </a>
+    </div>
 
-    <a class="btn btn-outline-primary d-flex justify-content-center" asp-controller="Itens" asp-action="SubXAll" role="button">
-        Diminuir 1X All lendários
-    </a>
 </header>
+
+<p class="erro mt-3 d-flex justify-content-center">@TempData["Erro"]</p>
 
 <div class="container">
 

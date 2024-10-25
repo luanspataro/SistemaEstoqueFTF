@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using SistemaEstoqueFTF.Models;
 using SistemaEstoqueFTF.Services;
 using System.Linq;
@@ -189,30 +190,23 @@ namespace SistemaEstoqueFTF.Controllers
             return RedirectToAction("Index", "Itens");
         }
 
-
         [HttpGet]
         [HttpPost]
         public IActionResult SubXAll()
         {
             var items = context.Itens.Where(i => i.Raridade == "Lendário").ToList();
 
-            if (items.Any())
+            if (items.Any(item => item.Quantidade < 1))
             {
-                foreach (var item in items)
-                {
-                    if (item.Quantidade < 1)
-                    {
-                        ModelState.AddModelError("", "Não foi possível reduzir a quantidade de um item que tem menos de 1 em estoque.");
-                        break;
-                    }
-                    else
-                    {
-                        item.Quantidade -= 1;
-                    }
-                        
-                }
-                ModelState.AddModelError("", "Não foi possível reduzir a quantidade de um item que tem menos de 1 em estoque.");
+                TempData["Erro"] = "Você precisa ter pelo menos 1 unidade de todos os lendários";
+                return RedirectToAction("Index", "Itens");
             }
+
+            foreach (var item in items)
+            {
+                item.Quantidade -= 1;
+            }
+
             context.SaveChanges();
             return RedirectToAction("Index", "Itens");
         }

@@ -1,26 +1,3 @@
-/*html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  margin-bottom: 60px;
-} */
-
 * {
     margin: 0;
     padding: 0;
@@ -103,12 +80,12 @@ body {
         }
 
         .container .card:hover {
-            background-color: gold;
-            /*background-color: black;*/
+            background-color: mediumpurple;
             color: white;
             margin-top: -2px;
-            box-shadow: 2px 20px 25px #FFEB81;
-            border-color: gold;
+            box-shadow: 2px 20px 25px mediumpurple;
+            border-color: mediumpurple;
+            opacity: 0.7;
         }
 
             .container .card:hover img {
@@ -169,6 +146,10 @@ header {
     right: 1px;
 }
 
+.erro {
+    color: red;
+}
+
 /* opcional */
 /*.fundoEtiqueta {
     width: 0;
@@ -182,4 +163,25 @@ header {
 }*/
 
 
-/* Edit */
+/*
+.button-6 {
+    background: var(--btn-bg-color-hover);
+    font-weight: 700;
+    padding: 0;
+    border-radius: 5px;
+}
+
+    .button-6 span {
+        display: block;
+        background: var(--btn-bg-color);
+        padding: 1.5rem 2rem;
+        border: 1px solid #000;
+        border-radius: 5px;
+        transform: translate3d(-4px, -4px, 0);
+        transition: transform 0.3s cubic-bezier(0.7, 0, 0.2, 1);
+    }
+
+    .button-6:hover span {
+        transform: translate3d(-8px, -8px, 0);
+    }
+    */
