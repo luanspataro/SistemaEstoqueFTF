@@ -1,4 +1,25 @@
 ﻿body {
-    background: rgb(9,9,121);
-    background: linear-gradient(90deg, rgba(9,9,121,1) 0%, rgba(42,0,255,0.6138830532212884) 50%, rgba(9,9,121,1) 100%);
+    border-color: black;
+    border-radius: 2px;
+    margin: 2rem;
+    #background: rgb(9,9,121);
+    #background: linear-gradient(90deg, rgba(9,9,121,1) 0%, rgba(42,0,255,0.6138830532212884) 50%, rgba(9,9,121,1) 100%);
+}
+
+.form-control:focus, .form-select:focus {
+    box-shadow: 0.3rem 0.3rem 1px #202C45;
+    border-color: #ced4da;
+}
+
+@media (max-width: 700px) {
+    .form-control:focus, .form-select:focus {
+        box-shadow: 10px 0.4rem 1px #202C45;
+        border-color: #ced4da;
+    }
+}
+
+@media (max-width: 575px) {
+    .botao {
+        margin-top: 0.5rem;
+    }
 }

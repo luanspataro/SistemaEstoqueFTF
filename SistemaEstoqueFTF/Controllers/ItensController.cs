@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.EntityFrameworkCore;
 using SistemaEstoqueFTF.Models;
 using SistemaEstoqueFTF.Services;
 using System.Linq;
@@ -17,10 +19,17 @@ namespace SistemaEstoqueFTF.Controllers
             this.environment = environment;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(string searchString = null)
         {
-            var itens = context.Itens.OrderByDescending(p => p.Preco).ToList();
-            return View(itens);
+            var itens = context.Itens.AsQueryable();
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                itens = itens.Where(n => n.Nome.Contains(searchString));
+            }
+
+            var itensList = await itens.OrderByDescending(p => p.Preco).ToListAsync();
+            return View(itensList);
         }
 
         public IActionResult Create()
@@ -210,6 +219,7 @@ namespace SistemaEstoqueFTF.Controllers
             context.SaveChanges();
             return RedirectToAction("Index", "Itens");
         }
+
 
     }
 }

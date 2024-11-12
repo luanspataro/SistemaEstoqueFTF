@@ -11,15 +11,12 @@
 </head>
 <body>
 <div class="row">
-    <div class="col-md-8 mx-auto rounded-4 border-2 p-3 box">
-        <h2 class="text-center mb-5">Editar item</h2>
+        <div class="mx-auto">
+        <h2 class="text-center mb-3">Editar item</h2>
 
         <form method="post" enctype="multipart/form-data">
             <div class="row mb-3">
-                <label class="col-sm-4 col-form-label">Id</label>
-                <div class="col-sm-8">
-                    <input class="form-control-plaintext" readonly value="@ViewData["ItemId"]">
-                </div>
+                    <label class="col-sm-4 col-form-label">Id: <b>@ViewData["ItemId"]</b></label>
             </div>
 
             <div class="row mb-3">
@@ -81,15 +78,22 @@
             </div>
 
             <div class="row">
-                <div class="offset-sm-4 col-sm-4 d-grid">
-                    <button type="submit" class="btn btn-primary">Confirmar</button>
+                <div class="offset-sm-4 col-sm-4 d-grid mb-1">
+                    <button type="submit" class="btn btn-dark">Confirmar</button>
                 </div>
 
-                <div class="col-sm-4 d-grid">
-                    <a class="btn btn-outline-primary" asp-controller="Itens" asp-action="Index" role="button">
+                <div class="col-sm-4 d-grid mb-1">
+                    <a class="btn btn-outline-dark" asp-controller="Itens" asp-action="Index" role="button">
                         Cancelar
                     </a>
                 </div>
+
+                    <div class="offset-sm-4 col-sm-4 d-grid">
+                        <a class="btn btn-outline-danger" asp-controller="Itens" asp-action="Delete" asp-route-id="@ViewData["ItemId"]" onclick="return confirm('Tem certeza que deseja deletar o item?')">
+                            <img src="/img/trash.png" alt="Apagar" width="20">
+                        </a>
+                    </div>
+
             </div>
 
         </form>

@@ -17,3 +17,21 @@ function diminuirUnidade(itemId) {
         alert('Erro ao adicionar unidade.');
     });
 }
+
+$(document).ready(function () {
+    $('#searchInput').on('keyup', function () {
+        let query = $(this).val();
+        if (query.length > 0) {
+            $.ajax({
+                url: '@Url.Action("LiveSearch", "Itens")',
+                type: 'GET',
+                data: { searchString: query },
+                success: function (data) {
+                    $('#searchResults').html(data);
+                }
+            });
+        } else {
+            $('#searchResults').empty();
+        }
+    });
+});

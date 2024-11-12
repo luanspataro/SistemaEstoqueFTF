@@ -181,6 +181,9 @@ header img {
     right: 1px;
 }*/
 
+button:focus {
+    outline: none;
+}
 
 .button-1 {
     display: block;
@@ -206,10 +209,10 @@ header img {
     transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-input:focus, input:active, .form-control {
-    border-color: purple !important;
-    outline: purple !important;
-    box-shadow: red;
+input:focus, input:active, form-control, .form-control:focus, .form-control:active {
+    border-color: #6209b0 !important;
+    outline: #6209b0 !important;
+    box-shadow: 1px 1px #6209b0;
 }
 
 .button-1:hover
@@ -331,6 +334,10 @@ input:focus, input:active, .form-control {
         padding: 0.3rem 2rem;
     }
 
+.search-bar {
+    height: 2.4rem;
+}
+
 @media (max-width: 700px) {
     header img {
         width: 80px;
@@ -340,5 +347,7 @@ input:focus, input:active, .form-control {
         transition: all .50s ease;
     }
 
-
+    .bar {
+        padding: 1.5rem;
+    }
 }
