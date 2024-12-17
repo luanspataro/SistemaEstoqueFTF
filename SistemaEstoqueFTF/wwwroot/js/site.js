@@ -14,10 +14,11 @@ function diminuirUnidade(itemId) {
             $('#quantidade-' + itemId).text(data.quantidade);
         }
     }).fail(function () {
-        alert('Erro ao adicionar unidade.');
+        alert('Erro ao diminuir unidade.');
     });
 }
 
+// Barra de pesquisa
 $(document).ready(function () {
     $('#searchInput').on('keyup', function () {
         let query = $(this).val();
