@@ -29,18 +29,18 @@ priorizando categorias mais comercializadas.
 
 ## Configuração do Projeto
 
-1. **Clone o repositório:*
+1. **Clone o repositório:**
    ```bash
    git clone https://github.com/luanspataro/SistemaEstoqueFTF.git
    cd SistemaEstoqueFTF
    ```
 
-2. **Restaure as dependências:*
+2. **Restaure as dependências:**
     ```bash
     dotnet restore
     ```
 
-3. **Configure o banco de dados:*
+3. **Configure o banco de dados:**
    - Certifique-se de que o SQL Server está em execução.
    - Atualize a string de conexão no arquivo `appsettings.json`:
      ```json
