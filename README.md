@@ -19,7 +19,8 @@ priorizando categorias mais comercializadas.
 ## Funcionalidades
 - Criação, edição e exclusão de itens
 - Possiblidade de adicionar fotos
-- Adiciona e remove uma leva de todos os itens da mesma categoria de uma única vez
+- Permite mudar a quantidade do estoque facilmente pelos botões "-" e "+"
+- Adiciona ou remove uma unidade de todos os itens da mesma categoria de uma única vez
 - Possui barra de busca para facilitar a procura em grandes listas
 
 ## Pré-requisitos
@@ -28,18 +29,18 @@ priorizando categorias mais comercializadas.
 
 ## Configuração do Projeto
 
-1. *Clone o repositório:*
+1. **Clone o repositório:*
    ```bash
    git clone https://github.com/luanspataro/SistemaEstoqueFTF.git
    cd SistemaEstoqueFTF
    ```
 
-2. *Restaure as dependências:*
+2. **Restaure as dependências:*
     ```bash
     dotnet restore
     ```
 
-3. *Configure o banco de dados:*
+3. **Configure o banco de dados:*
    - Certifique-se de que o SQL Server está em execução.
    - Atualize a string de conexão no arquivo `appsettings.json`:
      ```json
